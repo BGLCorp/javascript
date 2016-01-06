@@ -98,6 +98,10 @@ Borrowed from [AirBnB](https://github.com/airbnb/javascript).
 ### [func-names](http://eslint.org/docs/rules/func-names.html) has been turned off for all automated test
 
     See issue https://github.com/airbnb/javascript/issues/433
+    
+### [Jsx no bind](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
+
+    Binding has been turned off as it makes our code simpler and test cases really don't care much GC
 
 Other Style Guides
  - [ES5](es5/)
