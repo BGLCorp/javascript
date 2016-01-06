@@ -4,8 +4,100 @@ Borrowed from [AirBnB](https://github.com/airbnb/javascript).
 
 *A mostly reasonable approach to JavaScript*
 
-[![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+## Difference in BGL Style Guide
+
+### Semicolons
+
+    We don't use semicolons at all as it makes code simple and our Scala code don't suggest semicolons as well :)
+    
+    eslint rules: [`semi`](http://eslint.org/docs/rules/semi.html).
+    
+    ```javascript
+    // bad
+    (() => {
+      const name = 'Skywalker';
+      return name;
+    })();
+    
+    // good
+    (function () {
+      const name = 'Skywalker'
+      return name
+    })()
+    ```
+    
+### Maximum Length
+
+    Avoid having lines of code that are longer than 120 characters (including whitespace).
+    Originally 100 in AirBnb Style Guide
+
+    > Why? This ensures readability and maintainability.
+
+    eslint rules: [`max-len`](http://eslint.org/docs/rules/max-len.html).
+    
+### Comma Dangle
+
+    we don't trailing comma
+    
+    ```javascript
+    // bad - 
+    var foo = {
+        bar: 'baz',
+        qux: 'quux',   /*error Unexpected trailing comma.*/
+    };
+    
+    var arr = [1,2,];  /*error Unexpected trailing comma.*/
+    
+    foo({
+      bar: 'baz',
+      qux: 'quux',     /*error Unexpected trailing comma.*/
+    });
+    
+    // good
+    var foo = {
+        bar: 'baz',
+        qux: 'quux'
+    }
+    
+    var arr = [1,2]
+    
+    foo({
+      bar: 'baz',
+      qux: 'quux'
+    })
+    ```
+### React JS
+
+#### Forbid certain propTypes (forbid-prop-types)
+
+    https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-prop-types.md
+
+    we allow *object* and *array* but not *any*
+    
+    ```javascript
+    SearchBox.propTypes = {
+      userInput: React.PropTypes.string.isRequired,
+      handleSearchUserInput: React.PropTypes.func.isRequired,
+      autoCompleteList: React.PropTypes.object.isRequired,  // object is OK
+      handleItemSelect: React.PropTypes.any.isRequired      // any not allowed
+    }
+    ```
+### [new-cap](http://eslint.org/docs/rules/new-cap.html)
+    Immutable.Map, Immutable.Set and Immutable.List has been configured to be used as a Constructor
+    
+    ```javascript
+    const initState = Map({
+      searchText: '',
+      startSearch: false,
+      autoCompleteList: { items: [] }
+    })
+    ```
+
+## Automated Testing
+
+### [func-names](http://eslint.org/docs/rules/func-names.html) has been turned off for all automated test
+
+    See issue https://github.com/airbnb/javascript/issues/433
 
 Other Style Guides
  - [ES5](es5/)
